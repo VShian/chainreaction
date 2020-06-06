@@ -1,45 +1,17 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
+import React from 'react';
+import {View} from 'react-native';
 
-import Row from './Row'
+import styles from '../Styles';
+import Row from './Row';
+import {ROWS} from './constants';
 
+const Table = () => {
+  const table = [];
+  for (let row = 0; row < ROWS; row++) {
+    table.push(<Row key={row} rowNumber={row} />);
+  }
 
-class Table extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { player: 0 }
-    }
-    togglePlayer = () => {
-        this.setState(prevState => ({
-            player: (prevState.player + 1) % 2
-        }));
-    }
-    render() {
-        let table = [];
-        const { player } = this.state;
-        const { rows, cols } = this.props;
-
-        for (let i = 0; i < rows; i++) {
-            table.push(
-                <Row
-                    key={i}
-                    len={cols}
-                    player={player}
-                    togglePlayer={this.togglePlayer}
-                />
-            )
-        }
-
-        return (
-            <View style={{
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'stretch',
-            }}>
-                {table}
-            </View>
-        );
-    }
-}
+  return <View style={styles.column}>{table}</View>;
+};
 
 export default Table;

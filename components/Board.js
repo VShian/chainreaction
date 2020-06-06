@@ -6,10 +6,9 @@ import styles from '../Styles'
 
 
 const Board = () => {
-    const board = <Table rows={15} cols={7} />
     return (
         <View style={styles.sectionContainer}>
-            {board}
+            <Table/>
         </View>
     )
 }
